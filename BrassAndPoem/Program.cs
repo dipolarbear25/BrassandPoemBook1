@@ -49,59 +49,65 @@ List<ProductType> productType = new()
 
 };
 //put your greeting here
-string greeting = "Welcome to The Classical Dream store!";
-
-Console.WriteLine(greeting);
+void Greeting()
+{
+    Console.WriteLine("Welcome to The Classical Dream store!");
+}
 //implement your loop here
-void Menu()
+void DisplayMenu()
 {
     string choice = null;
     while (choice != "5")
     {
-        Console.WriteLine(@"Choose an option:
+        Console.WriteLine(@"Please select a number from the menu below
         1. Display all products
         2. Delete a product
         3. Add a new product
         4. Update product properties
         5. Exit");
 
-        choice = Console.ReadLine();
+        choice = (Console.ReadLine().Trim());
+
         if (choice == "1")
         {
-            DisplayMenu();
+            DisplayAllProducts(products, productType);
         }
         else if (choice == "2")
         {
-            DisplayAllProducts();
+            DeleteProduct(products, productType);
         }
         else if (choice == "3")
         {
-            DeleteProduct();
+            AddProduct(products, productType);
         }
         else if (choice == "4")
         {
-            AddProduct();
+            UpdateProduct(products, productType);
         }
         else if (choice == "5")
         {
-            UpdateProduct();
+            Console.WriteLine("Goodbye");
         }
         else
         {
-            Console.WriteLine("Please enter a valid menu choice");
+            Console.WriteLine("Please select a valid option");
         }
-
     }
-};
-Menu();
-void DisplayMenu()
-{
-   
 }
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    for (int i = 0; i < products.Count; i++)
+    {
+        Console.WriteLine(productsDetails(products[i]));
+    }
+}
+
+string productsDetails(Product products)
+{
+    string productstring = @$"A {products.Name} is available for {products.Price}";
+
+    return productstring;
 }
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
@@ -118,6 +124,7 @@ void UpdateProduct(List<Product> products, List<ProductType> productTypes)
 {
     throw new NotImplementedException();
 }
-
+Greeting();
+DisplayMenu();
 // don't move or change this!
 public partial class Program { }
